@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="Description" content="Enter your description here" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/css/clicker-style.css" />
+    <title>Clicker</title>
+  </head>
+
+  <body class="bg-secondary text-light">
+    <div class="position-absolute h-100 w-100 d-flex">
+      <div id="sidebar" class="col-md-2 bg-dark d-none d-md-block">
+        <div id="usuario" class="row justify-content-center">
+          <div
+            id="imagem"
+            class="d-flex justify-content-center col-10 mt-4 border border-dark rounded bg-white"
+          >
+            <img
+              class="img-fluid col-8 my-2"
+              src="https://old.agenciamoustache.com.br/wp-content/uploads/2016/02/user-id-o-que-%C3%A9-295x300.png"
+            />
+          </div>
+
+          <h5 id="titulo" class="text-center">TITULO</h5>
+        </div>
+
+        <div id="menu" class="mt-3">
+          <ul class="list-group">
+            <li class="lista-item active">Jogo</li>
+            <li class="lista-item">Upgrade</li>
+            <li class="lista-item">config</li>
+          </ul>
+        </div>
+      </div>
+
+      <div id="content" class="col-md-10">
+        <div id="topbar" class="col-12 mb-5 bg-dark" style="height: 5%">
+          <div id="menus-sm" class="d-md-none col-3 h-100 dropdown">
+            <img
+              data-toggle="dropdown"
+              class="bg-white rounded-circle ml-2 mt-1 h-75"
+              src="https://old.agenciamoustache.com.br/wp-content/uploads/2016/02/user-id-o-que-%C3%A9-295x300.png"
+            />
+
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">Jogo</a>
+              <a class="dropdown-item" href="#">Upgrade</a>
+              <a class="dropdown-item" href="#">Configurações</a>
+            </div>
+          </div>
+        </div>
+
+        <div id="page" class="container">
+          <div class="row justify-content-center">
+            <div id="item" class="col-md-3 col-10 mb-3 ml-md-2 mr-md-2">
+              <div class="row bg-dark rounded">
+                <div id="item-imagem" class="col-3 bg-white rounded-left">
+                  <img
+                    class="img-fluid"
+                    src="https://static.nagem.com.br/util/artefatos/produtos/m/n/971321493211986/458651.jpg"
+                  />
+                </div>
+
+                <div id="item-nome" class="col-6">
+                  <h6 class="mt-3">Mouse</h6>
+                </div>
+
+                <div
+                  id="item-botao"
+                  class="col-3 bg-info rounded-right text-center"
+                >
+                  <h3 class="mt-2">
+                    <i class="fas fa-money-bill-alt"></i>
+                  </h3>
+                </div>
+
+                <div
+                  id="item-status"
+                  class="col-12 border border-white rounded-bottom mt-2"
+                >
+                  status
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
+  </body>
+</html>

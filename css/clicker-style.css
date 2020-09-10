@@ -1,0 +1,12 @@
+.lista-item {
+  position: relative;
+  display: block;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: -1px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.lista-item.active {
+  background-color: #17a2b8;
+  border: 2px solid #00ddff5e;
+}
