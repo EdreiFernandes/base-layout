@@ -1,6 +1,5 @@
 var clicks = 0;
 var text = "Uhm";
-// var text = "OLA";
 
 function atualiza() {
   clicks++;
@@ -27,10 +26,9 @@ function atualiza() {
   } else if (clicks == 8) {
     TurnOn("top", "center");
     TurnOff("bottom");
-  } else {
+  } else if (clicks == 9) {
     TurnOn("middle", "center");
     TurnOff("top");
-    clicks = 0;
   }
 }
 
@@ -50,7 +48,10 @@ function TurnOff(_div) {
 function UpdateText() {
   if (text.includes("Uhm")) {
     text = text + "m";
-    if (clicks > 8) text = "UUHHMMMM!!!!";
+    if (clicks > 8) {
+      text = "UUHHMMMM!!!!";
+      clicks = 0;
+    }
   } else {
     if (clicks == 1) {
       text = "<i class='far fa-meh-rolling-eyes'></i><br/>Você não cansa?";
