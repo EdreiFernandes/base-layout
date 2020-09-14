@@ -1,5 +1,6 @@
 var clicks = 0;
 var text = "Uhm";
+// var text = "OLA";
 
 function atualiza() {
   clicks++;
@@ -27,7 +28,6 @@ function atualiza() {
     TurnOn("top", "center");
     TurnOff("bottom");
   } else {
-    if (text.includes("Uhm")) text = "UUHHHMMMM!!!!";
     TurnOn("middle", "center");
     TurnOff("top");
     clicks = 0;
@@ -35,11 +35,12 @@ function atualiza() {
 }
 
 function TurnOn(_div, _position) {
+  UpdateText();
   document.getElementById(_div + "-text").innerHTML = text;
+
   var div = document.getElementById(_div);
   div.className = "text-" + _position;
   div.hidden = false;
-  UpdateText();
 }
 
 function TurnOff(_div) {
@@ -49,24 +50,27 @@ function TurnOff(_div) {
 function UpdateText() {
   if (text.includes("Uhm")) {
     text = text + "m";
+    if (clicks > 8) text = "UUHHMMMM!!!!";
   } else {
-    text = "Você não cansa?";
     if (clicks == 1) {
-      text = "Pode ir embora já";
+      text = "<i class='far fa-meh-rolling-eyes'></i><br/>Você não cansa?";
     } else if (clicks == 2) {
       text = "Já tá testado";
     } else if (clicks == 3) {
-      text = "Alanna?!";
+      text = "<i class='far fa-grimace'></i><br/>Pode ir embora já";
     } else if (clicks == 4) {
-      text = "O que você tá esperando?";
+      text = "<i class='far fa-meh'></i><br/>Alanna?!";
     } else if (clicks == 5) {
-      text = "Achou que ia acontecer algo? Vai não!";
+      text = "O que você tá esperando?";
     } else if (clicks == 6) {
-      text = "Pode parar";
+      text =
+        "<i class='far fa-smile-beam'></i><br/>Achou que ia acontecer algo? Vai não!";
     } else if (clicks == 7) {
-      text = "Tá, tá bom então";
-    } else if (clicks == 7) {
-      text = "Amo você, minha bonita";
+      text = "Pode parar!";
+    } else if (clicks == 8) {
+      text = "<i class='far fa-angry'></i><br/>Tá, tá bom então";
+    } else {
+      text = "<i class='far fa-heart'></i><br/>Amo você, minha bonita";
     }
   }
 }
