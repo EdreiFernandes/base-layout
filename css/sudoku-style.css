@@ -9,3 +9,7 @@
 .board-cell.selected {
   background-color: rgba(214, 214, 214, 0.692) !important;
 }
+
+.board-cell.nier-selected {
+  background-color: rgba(236, 233, 233, 0.692) !important;
+}

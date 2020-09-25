@@ -103,16 +103,28 @@ function selectCell(_id) {
     if (selected_cell_id != null) {
       document.getElementById(selected_cell_id).classList.remove("selected");
     }
+
+    var splited_id = _id.split("_");
+    selectSquare(splited_id[1]);
   }
   selected_cell_id = _id;
 }
 
+function selectSquare(_square_index) {
+  game[_square_index].forEach(function (row, row_index) {
+    row.forEach(function (cell, cell_index) {
+      var id = "cell_" + _square_index + "_" + row_index + "_" + cell_index;
+      var cell_class = document.getElementById(id).classList;
+      if (!cell_class.contains("selected")) {
+        cell_class.add("nier-selected");
+      }
+    });
+  });
+}
 //ativa square
 //ativa row
 //ativa column
 
-// var splited_id = _id.split("_");
-// var square = splited_id[1];
 // var row = splited_id[2];
 // var cell = splited_id[3];
 // var row_class = document.getElementById("row" + _row).classList;
