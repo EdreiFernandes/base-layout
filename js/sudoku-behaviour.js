@@ -68,7 +68,9 @@ function createBoardSquare(_square_values) {
   html += '   <div class="row">';
   _square_values.forEach(function (row_value) {
     row_value.forEach(function (cell_value) {
-      html += '     <div class="col-4 border">' + cell_value + "</div>";
+      var value = cell_value;
+      if (cell_value == 0) value = " ";
+      html += '     <div class="col-4 border board-cell">' + value + "</div>";
     });
   });
   html += "   </div>";

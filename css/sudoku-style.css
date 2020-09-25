@@ -1,3 +1,7 @@
+.board-cell {
+  height: 2rem;
+}
+
 .board-cell:hover {
   background-color: rgba(214, 214, 214, 0.692) !important;
 }
