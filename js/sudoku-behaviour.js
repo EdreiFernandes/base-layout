@@ -1,8 +1,50 @@
 var game_board;
 var game = [
-  [1, 2, 3],
-  [4, 5, 6],
-  [4, 5, 6],
+  [
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+  ],
+  [
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+  ],
+  [
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+  ],
+  [
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+  ],
+  [
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+  ],
+  [
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+  ],
+  [
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+  ],
+  [
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+  ],
+  [
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+  ],
 ];
 
 window.onload = function () {
@@ -11,32 +53,22 @@ window.onload = function () {
 };
 
 function createGameBoard() {
-  createBoardRow();
-}
-
-function createBoardRow() {
-  var html = '<createBoardSquare id="board_row" class="row">';
-  html += createBoardSquare(1);
-  html += createBoardSquare(2);
-  html += createBoardSquare(3);
+  var html = '<div class="row">';
+  game.forEach(function (square_values) {
+    html += createBoardSquare(square_values);
+  });
   html += "</div>";
 
   game_board.innerHTML += html;
 }
 
-function createBoardSquare(_id) {
-  var html =
-    '<div div id = "board_square_' +
-    _id +
-    '" class="col-4 border border-primary">';
+function createBoardSquare(_square_values) {
+  var html = '<div div id = "board_square" class="col-4 border border-dark">';
 
   html += '   <div class="row">';
-  game.forEach(function (row_value) {
+  _square_values.forEach(function (row_value) {
     row_value.forEach(function (cell_value) {
-      html +=
-        '     <div class="col-4 border border-success">' +
-        cell_value +
-        "</div>";
+      html += '     <div class="col-4 border">' + cell_value + "</div>";
     });
   });
   html += "   </div>";
