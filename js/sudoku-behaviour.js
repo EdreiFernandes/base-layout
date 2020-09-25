@@ -46,11 +46,12 @@ var game = [
     [0, 0, 0],
   ],
 ];
+var selected_cell_id = null;
 
 window.onload = function () {
   game_board = document.getElementById("game_board");
   game_board.addEventListener("click", function (e) {
-    alert(e.target.id);
+    changeValue(e.target.id);
   });
   createGameBoard();
 };
@@ -93,15 +94,19 @@ function createBoardSquare(_square_values, _square_index) {
   return html;
 }
 
-function changeValue(_row, _col) {
-  var cell_class = document.getElementById("cell" + _row + _col).classList;
-  var row_class = document.getElementById("row" + _row).classList;
-
-  if (cell_class[1] == "selected") {
-    cell_class.remove("selected");
-    row_class.remove("selected");
-  } else {
+function changeValue(_id) {
+  var cell_class = document.getElementById(_id).classList;
+  if (!cell_class.contains("selected")) {
     cell_class.add("selected");
-    row_class.add("selected");
+    if (selected_cell_id != null) {
+      document.getElementById(selected_cell_id).classList.remove("selected");
+    }
   }
+  selected_cell_id = _id;
+
+  // var splited_id = _id.split("_");
+  // var square = splited_id[1];
+  // var row = splited_id[2];
+  // var cell = splited_id[3];
+  // var row_class = document.getElementById("row" + _row).classList;
 }

@@ -3,13 +3,9 @@
 }
 
 .board-cell:hover {
-  background-color: rgba(214, 214, 214, 0.692) !important;
+  background-color: rgba(236, 233, 233, 0.692) !important;
 }
 
 .board-cell.selected {
-  background-color: rgb(214, 214, 214) !important;
-}
-
-.board-row.selected {
-  background-color: rgba(228, 225, 225, 0.692) !important;
+  background-color: rgba(214, 214, 214, 0.692) !important;
 }
