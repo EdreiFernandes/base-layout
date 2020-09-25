@@ -51,7 +51,7 @@ var selected_cell_id = null;
 window.onload = function () {
   game_board = document.getElementById("game_board");
   game_board.addEventListener("click", function (e) {
-    changeValue(e.target.id);
+    selectCell(e.target.id);
   });
   createGameBoard();
 };
@@ -94,19 +94,25 @@ function createBoardSquare(_square_values, _square_index) {
   return html;
 }
 
-function changeValue(_id) {
+function selectCell(_id) {
   var cell_class = document.getElementById(_id).classList;
+
   if (!cell_class.contains("selected")) {
     cell_class.add("selected");
+
     if (selected_cell_id != null) {
       document.getElementById(selected_cell_id).classList.remove("selected");
     }
   }
   selected_cell_id = _id;
-
-  // var splited_id = _id.split("_");
-  // var square = splited_id[1];
-  // var row = splited_id[2];
-  // var cell = splited_id[3];
-  // var row_class = document.getElementById("row" + _row).classList;
 }
+
+//ativa square
+//ativa row
+//ativa column
+
+// var splited_id = _id.split("_");
+// var square = splited_id[1];
+// var row = splited_id[2];
+// var cell = splited_id[3];
+// var row_class = document.getElementById("row" + _row).classList;
