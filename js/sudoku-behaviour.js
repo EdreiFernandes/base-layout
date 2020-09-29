@@ -104,16 +104,16 @@ function selectCell(_id) {
   if (!cell_class.contains("selected")) {
     cell_class.add("selected");
 
-    toggleNier(_id, true);
+    toggleNear(_id, true);
   }
 }
 function deselectPreviousCell() {
   if (selected_cell_id != null) {
     document.getElementById(selected_cell_id).classList.remove("selected");
-    toggleNier(selected_cell_id, false);
+    toggleNear(selected_cell_id, false);
   }
 }
-function toggleNier(_id, _turn_on) {
+function toggleNear(_id, _turn_on) {
   var splited_id = _id.split("_");
   var square = splited_id[1];
   var row = splited_id[2];
@@ -131,11 +131,11 @@ function toggleSquare(_square_index, _turn_on) {
       var cell_class = document.getElementById(id).classList;
       if (_turn_on) {
         if (!cell_class.contains("selected")) {
-          cell_class.add("nier-selected");
+          cell_class.add("near-selected");
         }
       } else {
-        if (cell_class.contains("nier-selected")) {
-          cell_class.remove("nier-selected");
+        if (cell_class.contains("near-selected")) {
+          cell_class.remove("near-selected");
         }
       }
     });
@@ -157,11 +157,11 @@ function toggleRow(_square_index, _row_index, _turn_on) {
 
       if (_turn_on) {
         if (!cell_class.contains("selected")) {
-          cell_class.add("nier-selected");
+          cell_class.add("near-selected");
         }
       } else {
-        if (cell_class.contains("nier-selected")) {
-          cell_class.remove("nier-selected");
+        if (cell_class.contains("near-selected")) {
+          cell_class.remove("near-selected");
         }
       }
     });
@@ -182,11 +182,11 @@ function toggleColumn(_square_index, _cell_index, _turn_on) {
       var cell_class = document.getElementById(id).classList;
       if (_turn_on) {
         if (!cell_class.contains("selected")) {
-          cell_class.add("nier-selected");
+          cell_class.add("near-selected");
         }
       } else {
-        if (cell_class.contains("nier-selected")) {
-          cell_class.remove("nier-selected");
+        if (cell_class.contains("near-selected")) {
+          cell_class.remove("near-selected");
         }
       }
     });
