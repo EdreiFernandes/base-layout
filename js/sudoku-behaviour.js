@@ -104,10 +104,12 @@ function selectCell(_id) {
       document.getElementById(selected_cell_id).classList.remove("selected");
       var splited_selected_cell_id = selected_cell_id.split("_");
       deselectSquare(splited_selected_cell_id[1]);
+      deselectRow(splited_selected_cell_id[1], splited_selected_cell_id[2]);
     }
 
     var splited_id = _id.split("_");
     selectSquare(splited_id[1]);
+    selectRow(splited_id[1], splited_id[2]);
   }
   selected_cell_id = _id;
 }
@@ -135,7 +137,85 @@ function deselectSquare(_square_index) {
     });
   });
 }
-//ativa row
+
+function selectRow(_square_index, _row_index) {
+  // 0 - 1- 2
+  if (_square_index < 3) {
+    for (var i = 0; i < 3; i++) {
+      game[i][_row_index].forEach(function (cell, cell_index) {
+        var id = "cell_" + i + "_" + _row_index + "_" + cell_index;
+        var cell_class = document.getElementById(id).classList;
+        if (!cell_class.contains("selected")) {
+          cell_class.add("nier-selected");
+        }
+      });
+    }
+  } else {
+    // 3 - 4 - 5
+    if (_square_index < 6) {
+      for (var i = 3; i < 6; i++) {
+        game[i][_row_index].forEach(function (cell, cell_index) {
+          var id = "cell_" + i + "_" + _row_index + "_" + cell_index;
+          var cell_class = document.getElementById(id).classList;
+          if (!cell_class.contains("selected")) {
+            cell_class.add("nier-selected");
+          }
+        });
+      }
+    } else {
+      // 6 - 7 - 8
+      for (var i = 6; i < 9; i++) {
+        game[i][_row_index].forEach(function (cell, cell_index) {
+          var id = "cell_" + i + "_" + _row_index + "_" + cell_index;
+          var cell_class = document.getElementById(id).classList;
+          if (!cell_class.contains("selected")) {
+            cell_class.add("nier-selected");
+          }
+        });
+      }
+    }
+  }
+}
+
+function deselectRow(_square_index, _row_index) {
+  // 0 - 1- 2
+  if (_square_index < 3) {
+    for (var i = 0; i < 3; i++) {
+      game[i][_row_index].forEach(function (cell, cell_index) {
+        var id = "cell_" + i + "_" + _row_index + "_" + cell_index;
+        var cell_class = document.getElementById(id).classList;
+        if (cell_class.contains("nier-selected")) {
+          cell_class.remove("nier-selected");
+        }
+      });
+    }
+  } else {
+    // 3 - 4 - 5
+    if (_square_index < 6) {
+      for (var i = 3; i < 6; i++) {
+        game[i][_row_index].forEach(function (cell, cell_index) {
+          var id = "cell_" + i + "_" + _row_index + "_" + cell_index;
+          var cell_class = document.getElementById(id).classList;
+          if (cell_class.contains("nier-selected")) {
+            cell_class.remove("nier-selected");
+          }
+        });
+      }
+    } else {
+      // 6 - 7 - 8
+      for (var i = 6; i < 9; i++) {
+        game[i][_row_index].forEach(function (cell, cell_index) {
+          var id = "cell_" + i + "_" + _row_index + "_" + cell_index;
+          var cell_class = document.getElementById(id).classList;
+          if (cell_class.contains("nier-selected")) {
+            cell_class.remove("nier-selected");
+          }
+        });
+      }
+    }
+  }
+}
+
 //ativa column
 
 // var row = splited_id[2];
