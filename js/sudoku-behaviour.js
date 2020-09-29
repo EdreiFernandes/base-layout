@@ -102,6 +102,8 @@ function selectCell(_id) {
 
     if (selected_cell_id != null) {
       document.getElementById(selected_cell_id).classList.remove("selected");
+      var splited_selected_cell_id = selected_cell_id.split("_");
+      deselectSquare(splited_selected_cell_id[1]);
     }
 
     var splited_id = _id.split("_");
@@ -121,7 +123,18 @@ function selectSquare(_square_index) {
     });
   });
 }
-//ativa square
+
+function deselectSquare(_square_index) {
+  game[_square_index].forEach(function (row, row_index) {
+    row.forEach(function (cell, cell_index) {
+      var id = "cell_" + _square_index + "_" + row_index + "_" + cell_index;
+      var cell_class = document.getElementById(id).classList;
+      if (cell_class.contains("nier-selected")) {
+        cell_class.remove("nier-selected");
+      }
+    });
+  });
+}
 //ativa row
 //ativa column
 
