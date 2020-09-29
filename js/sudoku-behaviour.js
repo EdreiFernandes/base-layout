@@ -113,6 +113,7 @@ function deselectPreviousCell() {
     toggleNear(selected_cell_id, false);
   }
 }
+
 function toggleNear(_id, _turn_on) {
   var splited_id = _id.split("_");
   var square = splited_id[1];
@@ -123,21 +124,11 @@ function toggleNear(_id, _turn_on) {
   toggleRow(square, row, _turn_on);
   toggleColumn(square, column, _turn_on);
 }
-
 function toggleSquare(_square_index, _turn_on) {
   game[_square_index].forEach(function (row, row_index) {
     row.forEach(function (cell, cell_index) {
       var id = "cell_" + _square_index + "_" + row_index + "_" + cell_index;
-      var cell_class = document.getElementById(id).classList;
-      if (_turn_on) {
-        if (!cell_class.contains("selected")) {
-          cell_class.add("near-selected");
-        }
-      } else {
-        if (cell_class.contains("near-selected")) {
-          cell_class.remove("near-selected");
-        }
-      }
+      toggleClass(id, _turn_on);
     });
   });
 }
@@ -153,17 +144,7 @@ function toggleRow(_square_index, _row_index, _turn_on) {
   for (var i = _square_index; i < _square_index + 3; i++) {
     game[i][_row_index].forEach(function (cell, cell_index) {
       var id = "cell_" + i + "_" + _row_index + "_" + cell_index;
-      var cell_class = document.getElementById(id).classList;
-
-      if (_turn_on) {
-        if (!cell_class.contains("selected")) {
-          cell_class.add("near-selected");
-        }
-      } else {
-        if (cell_class.contains("near-selected")) {
-          cell_class.remove("near-selected");
-        }
-      }
+      toggleClass(id, _turn_on);
     });
   }
 }
@@ -179,16 +160,20 @@ function toggleColumn(_square_index, _cell_index, _turn_on) {
   for (var i = _square_index; i < _square_index + 7; i += 3) {
     game[i].forEach(function (row, row_index) {
       var id = "cell_" + i + "_" + row_index + "_" + _cell_index;
-      var cell_class = document.getElementById(id).classList;
-      if (_turn_on) {
-        if (!cell_class.contains("selected")) {
-          cell_class.add("near-selected");
-        }
-      } else {
-        if (cell_class.contains("near-selected")) {
-          cell_class.remove("near-selected");
-        }
-      }
+      toggleClass(id, _turn_on);
     });
+  }
+}
+function toggleClass(_id, _turn_on) {
+  var cell_class = document.getElementById(_id).classList;
+
+  if (_turn_on) {
+    if (!cell_class.contains("selected")) {
+      cell_class.add("near-selected");
+    }
+  } else {
+    if (cell_class.contains("near-selected")) {
+      cell_class.remove("near-selected");
+    }
   }
 }
