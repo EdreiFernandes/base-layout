@@ -50,12 +50,17 @@ var selected_cell_id = null;
 
 window.onload = function () {
   game_board = document.getElementById("game_board");
-  game_board.addEventListener("click", function (e) {
-    selectCell(e.target.id);
-  });
   createGameBoard();
+
+  game_board.addEventListener("click", function (e) {
+    var cell_id = e.target.id;
+    deselectPreviousCell();
+    selectCell(cell_id);
+    selected_cell_id = cell_id;
+  });
 };
 
+// initialize gameboard
 function createGameBoard() {
   var html = '<div class="row">';
   game.forEach(function (square_values, square_index) {
@@ -65,7 +70,6 @@ function createGameBoard() {
 
   game_board.innerHTML += html;
 }
-
 function createBoardSquare(_square_values, _square_index) {
   var html =
     '<div id="board_square_' +
@@ -100,20 +104,22 @@ function selectCell(_id) {
   if (!cell_class.contains("selected")) {
     cell_class.add("selected");
 
-    if (selected_cell_id != null) {
-      document.getElementById(selected_cell_id).classList.remove("selected");
-      var splited_selected_cell_id = selected_cell_id.split("_");
-      deselectSquare(splited_selected_cell_id[1]);
-      deselectRow(splited_selected_cell_id[1], splited_selected_cell_id[2]);
-      deselectColumn(splited_selected_cell_id[1], splited_selected_cell_id[3]);
-    }
-
     var splited_id = _id.split("_");
     selectSquare(splited_id[1]);
-    selectRow(splited_id[1], splited_id[2]);
+    toggleRow(splited_id[1], splited_id[2], true);
     selectColumn(splited_id[1], splited_id[3]);
   }
-  selected_cell_id = _id;
+}
+
+function deselectPreviousCell() {
+  if (selected_cell_id != null) {
+    document.getElementById(selected_cell_id).classList.remove("selected");
+
+    var splited_selected_cell_id = selected_cell_id.split("_");
+    deselectSquare(splited_selected_cell_id[1]);
+    toggleRow(splited_selected_cell_id[1], splited_selected_cell_id[2], false);
+    deselectColumn(splited_selected_cell_id[1], splited_selected_cell_id[3]);
+  }
 }
 
 function selectSquare(_square_index) {
@@ -140,81 +146,30 @@ function deselectSquare(_square_index) {
   });
 }
 
-function selectRow(_square_index, _row_index) {
-  // 0 - 1- 2
+function toggleRow(_square_index, _row_index, _turn_on) {
   if (_square_index < 3) {
-    for (var i = 0; i < 3; i++) {
-      game[i][_row_index].forEach(function (cell, cell_index) {
-        var id = "cell_" + i + "_" + _row_index + "_" + cell_index;
-        var cell_class = document.getElementById(id).classList;
+    _square_index = 0;
+  } else if (_square_index < 6) {
+    _square_index = 3;
+  } else {
+    _square_index = 6;
+  }
+
+  for (var i = _square_index; i < _square_index + 3; i++) {
+    game[i][_row_index].forEach(function (cell, cell_index) {
+      var id = "cell_" + i + "_" + _row_index + "_" + cell_index;
+      var cell_class = document.getElementById(id).classList;
+
+      if (_turn_on) {
         if (!cell_class.contains("selected")) {
           cell_class.add("nier-selected");
         }
-      });
-    }
-  } else {
-    // 3 - 4 - 5
-    if (_square_index < 6) {
-      for (var i = 3; i < 6; i++) {
-        game[i][_row_index].forEach(function (cell, cell_index) {
-          var id = "cell_" + i + "_" + _row_index + "_" + cell_index;
-          var cell_class = document.getElementById(id).classList;
-          if (!cell_class.contains("selected")) {
-            cell_class.add("nier-selected");
-          }
-        });
-      }
-    } else {
-      // 6 - 7 - 8
-      for (var i = 6; i < 9; i++) {
-        game[i][_row_index].forEach(function (cell, cell_index) {
-          var id = "cell_" + i + "_" + _row_index + "_" + cell_index;
-          var cell_class = document.getElementById(id).classList;
-          if (!cell_class.contains("selected")) {
-            cell_class.add("nier-selected");
-          }
-        });
-      }
-    }
-  }
-}
-
-function deselectRow(_square_index, _row_index) {
-  // 0 - 1- 2
-  if (_square_index < 3) {
-    for (var i = 0; i < 3; i++) {
-      game[i][_row_index].forEach(function (cell, cell_index) {
-        var id = "cell_" + i + "_" + _row_index + "_" + cell_index;
-        var cell_class = document.getElementById(id).classList;
+      } else {
         if (cell_class.contains("nier-selected")) {
           cell_class.remove("nier-selected");
         }
-      });
-    }
-  } else {
-    // 3 - 4 - 5
-    if (_square_index < 6) {
-      for (var i = 3; i < 6; i++) {
-        game[i][_row_index].forEach(function (cell, cell_index) {
-          var id = "cell_" + i + "_" + _row_index + "_" + cell_index;
-          var cell_class = document.getElementById(id).classList;
-          if (cell_class.contains("nier-selected")) {
-            cell_class.remove("nier-selected");
-          }
-        });
       }
-    } else {
-      // 6 - 7 - 8
-      for (var i = 6; i < 9; i++) {
-        game[i][_row_index].forEach(function (cell, cell_index) {
-          var id = "cell_" + i + "_" + _row_index + "_" + cell_index;
-          var cell_class = document.getElementById(id).classList;
-          if (cell_class.contains("nier-selected")) {
-            cell_class.remove("nier-selected");
-          }
-        });
-      }
-    }
+    });
   }
 }
 
