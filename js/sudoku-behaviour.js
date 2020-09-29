@@ -52,6 +52,28 @@ window.onload = function () {
   game_board = document.getElementById("game_board");
   createGameBoard();
 
+  document.querySelector("body").addEventListener("keydown", function (event) {
+    var key = event.key;
+    var splited_id = selected_cell_id.split("_");
+    var square = splited_id[1];
+    var row = splited_id[2];
+    var cell = splited_id[3];
+
+    if (key > 0 && key < 10) {
+      document.getElementById(selected_cell_id).innerHTML = key;
+
+      if (checkInSquare(square, key)) {
+        alert("Possivel");
+      }
+      // checkInRow(square, row, key);
+      // checkInColumn(square, cell, key);
+      game[square][row][cell] = key;
+    } else if (key == "Backspace" || key == "Delete") {
+      document.getElementById(selected_cell_id).innerHTML = "";
+      game[square][row][cell] = 0;
+    }
+  });
+
   game_board.addEventListener("click", function (e) {
     var cell_id = e.target.id;
     deselectPreviousCell();
@@ -114,6 +136,7 @@ function deselectPreviousCell() {
   }
 }
 
+// highlight nearby cells
 function toggleNear(_id, _turn_on) {
   var splited_id = _id.split("_");
   var square = splited_id[1];
@@ -176,4 +199,14 @@ function toggleClass(_id, _turn_on) {
       cell_class.remove("near-selected");
     }
   }
+}
+
+// check value
+function checkInSquare(_square_index, _key) {
+  for (var i = 0; i < 3; i++) {
+    if (game[_square_index][i].includes(_key)) {
+      return false;
+    }
+  }
+  return true;
 }
