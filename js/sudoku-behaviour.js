@@ -104,25 +104,24 @@ function selectCell(_id) {
   if (!cell_class.contains("selected")) {
     cell_class.add("selected");
 
-    var splited_id = _id.split("_");
-    toggleSquare(splited_id[1], true);
-    toggleRow(splited_id[1], splited_id[2], true);
-    toggleColumn(splited_id[1], splited_id[3], true);
+    toggleNier(_id, true);
   }
 }
 function deselectPreviousCell() {
   if (selected_cell_id != null) {
     document.getElementById(selected_cell_id).classList.remove("selected");
-
-    var splited_selected_cell_id = selected_cell_id.split("_");
-    toggleSquare(splited_selected_cell_id[1], false);
-    toggleRow(splited_selected_cell_id[1], splited_selected_cell_id[2], false);
-    toggleColumn(
-      splited_selected_cell_id[1],
-      splited_selected_cell_id[3],
-      false
-    );
+    toggleNier(selected_cell_id, false);
   }
+}
+function toggleNier(_id, _turn_on) {
+  var splited_id = _id.split("_");
+  var square = splited_id[1];
+  var row = splited_id[2];
+  var column = splited_id[3];
+
+  toggleSquare(square, _turn_on);
+  toggleRow(square, row, _turn_on);
+  toggleColumn(square, column, _turn_on);
 }
 
 function toggleSquare(_square_index, _turn_on) {
