@@ -105,7 +105,7 @@ function selectCell(_id) {
     cell_class.add("selected");
 
     var splited_id = _id.split("_");
-    selectSquare(splited_id[1]);
+    toggleSquare(splited_id[1], true);
     toggleRow(splited_id[1], splited_id[2], true);
     toggleColumn(splited_id[1], splited_id[3], true);
   }
@@ -115,7 +115,7 @@ function deselectPreviousCell() {
     document.getElementById(selected_cell_id).classList.remove("selected");
 
     var splited_selected_cell_id = selected_cell_id.split("_");
-    deselectSquare(splited_selected_cell_id[1]);
+    toggleSquare(splited_selected_cell_id[1], false);
     toggleRow(splited_selected_cell_id[1], splited_selected_cell_id[2], false);
     toggleColumn(
       splited_selected_cell_id[1],
@@ -125,30 +125,23 @@ function deselectPreviousCell() {
   }
 }
 
-function selectSquare(_square_index) {
+function toggleSquare(_square_index, _turn_on) {
   game[_square_index].forEach(function (row, row_index) {
     row.forEach(function (cell, cell_index) {
       var id = "cell_" + _square_index + "_" + row_index + "_" + cell_index;
       var cell_class = document.getElementById(id).classList;
-      if (!cell_class.contains("selected")) {
-        cell_class.add("nier-selected");
+      if (_turn_on) {
+        if (!cell_class.contains("selected")) {
+          cell_class.add("nier-selected");
+        }
+      } else {
+        if (cell_class.contains("nier-selected")) {
+          cell_class.remove("nier-selected");
+        }
       }
     });
   });
 }
-
-function deselectSquare(_square_index) {
-  game[_square_index].forEach(function (row, row_index) {
-    row.forEach(function (cell, cell_index) {
-      var id = "cell_" + _square_index + "_" + row_index + "_" + cell_index;
-      var cell_class = document.getElementById(id).classList;
-      if (cell_class.contains("nier-selected")) {
-        cell_class.remove("nier-selected");
-      }
-    });
-  });
-}
-
 function toggleRow(_square_index, _row_index, _turn_on) {
   if (_square_index < 3) {
     _square_index = 0;
@@ -175,7 +168,6 @@ function toggleRow(_square_index, _row_index, _turn_on) {
     });
   }
 }
-
 function toggleColumn(_square_index, _cell_index, _turn_on) {
   if (_square_index == 0 || _square_index == 3 || _square_index == 6) {
     _square_index = 0;
