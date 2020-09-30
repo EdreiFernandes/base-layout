@@ -63,10 +63,15 @@ window.onload = function () {
       document.getElementById(selected_cell_id).innerHTML = key;
 
       if (checkInSquare(square, key)) {
-        alert("Possivel");
+        alert("erro s");
       }
-      // checkInRow(square, row, key);
-      // checkInColumn(square, cell, key);
+      if (checkInRow(square, row, key)) {
+        alert("erro r");
+      }
+      if (checkInColumn(square, cell, key)) {
+        alert("erro c");
+      }
+
       game[square][row][cell] = key;
     } else if (key == "Backspace" || key == "Delete") {
       document.getElementById(selected_cell_id).innerHTML = "";
@@ -205,8 +210,42 @@ function toggleClass(_id, _turn_on) {
 function checkInSquare(_square_index, _key) {
   for (var i = 0; i < 3; i++) {
     if (game[_square_index][i].includes(_key)) {
-      return false;
+      return true;
     }
   }
-  return true;
+  return false;
+}
+function checkInRow(_square_index, _row_index, _key) {
+  if (_square_index < 3) {
+    _square_index = 0;
+  } else if (_square_index < 6) {
+    _square_index = 3;
+  } else {
+    _square_index = 6;
+  }
+
+  for (var i = _square_index; i < _square_index + 3; i++) {
+    if (game[i][_row_index].includes(_key)) {
+      return true;
+    }
+  }
+  return false;
+}
+function checkInColumn(_square_index, _cell_index, _key) {
+  if (_square_index == 0 || _square_index == 3 || _square_index == 6) {
+    _square_index = 0;
+  } else if (_square_index == 1 || _square_index == 4 || _square_index == 7) {
+    _square_index = 1;
+  } else {
+    _square_index = 2;
+  }
+
+  for (var i = _square_index; i < _square_index + 7; i += 3) {
+    for (var j = 0; j < 3; j++) {
+      if (game[i][j][_cell_index] == _key) {
+        return true;
+      }
+    }
+  }
+  return false;
 }
