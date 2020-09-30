@@ -57,7 +57,7 @@ function start() {
   createGameBoard();
 }
 function update() {
-  inputValue();
+  keyboardListener();
   onMouseClick();
 }
 
@@ -101,7 +101,7 @@ function createBoardSquare(_square_values, _square_index) {
   return html;
 }
 
-function inputValue() {
+function keyboardListener() {
   document.querySelector("body").addEventListener("keydown", function (event) {
     var key = event.key;
     var splited_id = selected_cell_id.split("_");
@@ -126,6 +126,40 @@ function inputValue() {
     } else if (key == "Backspace" || key == "Delete") {
       document.getElementById(selected_cell_id).innerHTML = "";
       game[square][row][cell] = 0;
+    } else if (key == "ArrowUp") {
+      var next_square = square;
+      var next_row = row - 1;
+      var next_cell = cell;
+
+      if (next_row < 0) {
+        next_square = square - 3;
+        if (next_square < 0) {
+          next_square = square * 1 + 6;
+        }
+        next_row = 2;
+      }
+
+      var cell_id = "cell_" + next_square + "_" + next_row + "_" + next_cell;
+      deselectPreviousCell();
+      selectCell(cell_id);
+      selected_cell_id = cell_id;
+    } else if (key == "ArrowDown") {
+      var next_square = square;
+      var next_row = row * 1 + 1;
+      var next_cell = cell;
+
+      if (next_row > 2) {
+        next_square = square * 1 + 3;
+        if (next_square > 8) {
+          next_square = square - 6;
+        }
+        next_row = 0;
+      }
+
+      var cell_id = "cell_" + next_square + "_" + next_row + "_" + next_cell;
+      deselectPreviousCell();
+      selectCell(cell_id);
+      selected_cell_id = cell_id;
     }
   });
 }
