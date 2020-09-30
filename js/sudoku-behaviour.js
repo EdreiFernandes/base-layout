@@ -49,46 +49,22 @@ var game = [
 var selected_cell_id = null;
 
 window.onload = function () {
-  game_board = document.getElementById("game_board");
-  createGameBoard();
-
-  document.querySelector("body").addEventListener("keydown", function (event) {
-    var key = event.key;
-    var splited_id = selected_cell_id.split("_");
-    var square = splited_id[1];
-    var row = splited_id[2];
-    var cell = splited_id[3];
-
-    if (key > 0 && key < 10) {
-      document.getElementById(selected_cell_id).innerHTML = key;
-
-      if (checkInSquare(square, key)) {
-        alert("erro s");
-      }
-      if (checkInRow(square, row, key)) {
-        alert("erro r");
-      }
-      if (checkInColumn(square, cell, key)) {
-        alert("erro c");
-      }
-
-      game[square][row][cell] = key;
-    } else if (key == "Backspace" || key == "Delete") {
-      document.getElementById(selected_cell_id).innerHTML = "";
-      game[square][row][cell] = 0;
-    }
-  });
-
-  game_board.addEventListener("click", function (e) {
-    var cell_id = e.target.id;
-    deselectPreviousCell();
-    selectCell(cell_id);
-    selected_cell_id = cell_id;
-  });
+  start();
+  update();
 };
+
+function start() {
+  createGameBoard();
+}
+function update() {
+  inputValue();
+  onMouseClick();
+}
 
 // initialize gameboard
 function createGameBoard() {
+  game_board = document.getElementById("game_board");
+
   var html = '<div class="row">';
   game.forEach(function (square_values, square_index) {
     html += createBoardSquare(square_values, square_index);
@@ -123,6 +99,43 @@ function createBoardSquare(_square_values, _square_index) {
   html += " </div>";
 
   return html;
+}
+
+function inputValue() {
+  document.querySelector("body").addEventListener("keydown", function (event) {
+    var key = event.key;
+    var splited_id = selected_cell_id.split("_");
+    var square = splited_id[1];
+    var row = splited_id[2];
+    var cell = splited_id[3];
+
+    if (key > 0 && key < 10) {
+      document.getElementById(selected_cell_id).innerHTML = key;
+
+      if (checkInSquare(square, key)) {
+        alert("erro s");
+      }
+      if (checkInRow(square, row, key)) {
+        alert("erro r");
+      }
+      if (checkInColumn(square, cell, key)) {
+        alert("erro c");
+      }
+
+      game[square][row][cell] = key;
+    } else if (key == "Backspace" || key == "Delete") {
+      document.getElementById(selected_cell_id).innerHTML = "";
+      game[square][row][cell] = 0;
+    }
+  });
+}
+function onMouseClick() {
+  game_board.addEventListener("click", function (e) {
+    var cell_id = e.target.id;
+    deselectPreviousCell();
+    selectCell(cell_id);
+    selected_cell_id = cell_id;
+  });
 }
 
 function selectCell(_id) {
