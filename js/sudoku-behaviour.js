@@ -140,9 +140,7 @@ function keyboardListener() {
       }
 
       var cell_id = "cell_" + next_square + "_" + next_row + "_" + next_cell;
-      deselectPreviousCell();
-      selectCell(cell_id);
-      selected_cell_id = cell_id;
+      updateSelected(cell_id);
     } else if (key == "ArrowDown") {
       var next_square = square;
       var next_row = row * 1 + 1;
@@ -157,19 +155,50 @@ function keyboardListener() {
       }
 
       var cell_id = "cell_" + next_square + "_" + next_row + "_" + next_cell;
-      deselectPreviousCell();
-      selectCell(cell_id);
-      selected_cell_id = cell_id;
+      updateSelected(cell_id);
+    } else if (key == "ArrowLeft") {
+      var next_square = square;
+      var next_row = row;
+      var next_cell = cell - 1;
+
+      if (next_cell < 0) {
+        next_square = square - 1;
+        if (next_square < 0) {
+          next_square = 8;
+        }
+        next_cell = 2;
+      }
+
+      var cell_id = "cell_" + next_square + "_" + next_row + "_" + next_cell;
+      updateSelected(cell_id);
+    } else if (key == "ArrowRight") {
+      var next_square = square;
+      var next_row = row;
+      var next_cell = cell * 1 + 1;
+
+      if (next_cell > 2) {
+        next_square = square * 1 + 1;
+        if (next_square > 8) {
+          next_square = 0;
+        }
+        next_cell = 0;
+      }
+
+      var cell_id = "cell_" + next_square + "_" + next_row + "_" + next_cell;
+      updateSelected(cell_id);
     }
   });
 }
 function onMouseClick() {
   game_board.addEventListener("click", function (e) {
-    var cell_id = e.target.id;
-    deselectPreviousCell();
-    selectCell(cell_id);
-    selected_cell_id = cell_id;
+    updateSelected(e.target.id);
   });
+}
+
+function updateSelected(_cell_id) {
+  deselectPreviousCell();
+  selectCell(_cell_id);
+  selected_cell_id = _cell_id;
 }
 
 function selectCell(_id) {
