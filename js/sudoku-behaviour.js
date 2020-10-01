@@ -54,6 +54,7 @@ window.onload = function () {
 };
 
 function start() {
+  randomizeGame();
   createGameBoard();
 }
 function update() {
@@ -73,6 +74,28 @@ function createGameBoard() {
 
   game_board.innerHTML += html;
 }
+
+function randomizeGame() {
+  var i = 0;
+  while (i < 38) {
+    var square = Math.floor(Math.random() * 9);
+    var row = Math.floor(Math.random() * 3);
+    var cell = Math.floor(Math.random() * 3);
+    var value = Math.floor(Math.random() * 10);
+
+    if (game[square][row][cell] == 0) {
+      if (!checkInSquare(square, value)) {
+        if (!checkInRow(square, row, value)) {
+          if (!checkInColumn(square, cell, value)) {
+            game[square][row][cell] = value;
+            i++;
+          }
+        }
+      }
+    }
+  }
+}
+
 function createBoardSquare(_square_values, _square_index) {
   var html =
     '<div id="board_square_' +
