@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="Description" content="Enter your description here" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+    />
+    <title>Login</title>
+  </head>
+
+  <body class="bg-primary">
+    <div class="container">
+      <div class="row text-center justify-content-center mt-5">
+        <div class="col-md-6 bg-white rounded shadow-lg mt-5">
+          <div id="title" class="mt-3 mb-4">
+            <h1>Livres</h1>
+            <h3>Baixada Santista</h3>
+          </div>
+
+          <form>
+            <div class="form-row">
+              <div class="mb-3">
+                <input
+                  id="username"
+                  type="text"
+                  class="form-control form-control-lg"
+                  placeholder="Usuário"
+                  required
+                />
+              </div>
+              <div class="mb-4">
+                <input
+                  id="senha"
+                  type="password"
+                  class="form-control form-control-lg"
+                  placeholder="Senha"
+                  required
+                />
+              </div>
+
+              <button
+                id="login"
+                type="submit"
+                class="btn btn-outline-primary btn-lg btn-block"
+              >
+                Login
+              </button>
+              <a
+                id="Cadastrar"
+                type="button"
+                class="btn btn-outline-secondary btn-block"
+                href="#Cadastro"
+              >
+                Cadastrar
+              </a>
+            </div>
+          </form>
+
+          <div id="esqueceuSenha" class="my-3">
+            <a href="#Senha">Esqueceu a senha?</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-alpha1/js/bootstrap.min.js"></script>
+  </body>
+</html>
