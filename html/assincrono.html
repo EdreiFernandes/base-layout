@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<title>Assync</title>
+</head>
+<body class="bg-primary">
+
+    <div class="container">
+        <ul class="list-group mt-5">
+            <li class="list-group-item">
+                <div class="row justify-content-between">
+                    <div class="form-group col-sm-3">
+                        <label for="idTipoCarga">Tipo Carga</label>
+                        <select name="idTipoCarga" id="tipoCargaSelect" class="form-control">
+                            <option value="0">Selecionar</option>
+                            <option value="1">TipoCarga1</option>
+                            <option value="2">TipoCarga2</option>
+                            <option value="3">TipoCarga3</option>
+                        </select>
+                    </div>
+            
+                    <div class="form-group col-sm-3">
+                        <label for="idOperacao">Operação</label>
+                        <select name="idOperacao" id="operacaoSelect" class="form-control" disabled>
+                            <option value="0">Selecionar</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-sm-6">
+                        <label for="idJanela">Janela</label>
+                        <select name="idJanela" id="janelaSelect" class="form-control" disabled>
+                            <option value="0">Selecionar</option>
+                        </select>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="/js/assincrono-behaviour.js"></script>
+</body>
+</html>
